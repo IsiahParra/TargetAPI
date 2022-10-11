@@ -8,17 +8,18 @@
 import Foundation
 
 struct TopLevelDictionary: Decodable {
+    private enum CodingKeys: String, CodingKey {
+        case requestInfo = "request_info"
+        case searchResults = "search_results"
+        
+    }
     let requestInfo: RequestInfo
-    let requestParameters: RequestParameters
-    let requestMetaData: RequestMetaData
-    let searchResult: [SearchResultDictionary]
+    let searchResults: [SearchResult]
+    
     
 }
 struct RequestInfo: Decodable {
-    private enum CodingKeys: String, CodingKey {
-        case success
-    }
-    let success: String
+    let success: Bool
 }
 
 struct RequestParameters: Decodable {
@@ -39,23 +40,21 @@ struct RequestMetaData: Decodable {
     let createdAt: String
 }
 
-struct SearchResultDictionary: Decodable {
-    private enum CodingKeys: String, CodingKey {
-        case position
-        case title
-        case brand
-        case features = "feature_bullets"
-        case rating
-        case image = "main_image"
-        case price
-    }
-    
-    let position: Int
-    let title: String
-    let brand: String
-    let features: String
-    let rating: Double
-    let image: String
-    let price: Double
+struct SearchResult: Decodable {
+    let product: Product
 }
 
+struct Product: Decodable {
+    private enum CodingKeys: String, CodingKey {
+        case title
+        case brand
+        case rating
+        case image = "main_image"
+    }
+    let title: String?
+    let brand: String?
+    //    let features: String?
+    let rating: Double?
+    let image: String?
+    //    let price: Double?
+}

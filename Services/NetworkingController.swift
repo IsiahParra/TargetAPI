@@ -9,40 +9,31 @@ import Foundation
 import UIKit
 
 class NetworkController {
+    //MARK: Private keys
     private static let baseURLString = "https://api.redcircleapi.com/request"
-    
-    static func fetchTopLevelDictionary(with url: URL, completion: @escaping (Result<TopLevelDictionary, NetworkError>) -> Void) {
+    private static let kApiKey = "api_key"
+    private static let valueKey = "4FDC0BE743EB4E18B1ABF5E9FCF9E6DA"
+    private static let kType = "type"
+    private static let typeValue = "search"
+    private static let kSearchTerm = "search_term"
+    private static let ksortBy = "sort_by"
+    private static let ratingValue = "highest_rating"
+
+    static func fetchItems(with searchTerm: String, completion: @escaping (Result<[SearchResult], NetworkError>) -> Void) {
         guard let baseURL = URL(string: baseURLString) else {return}
-        print(baseURL)
         
-        URLSession.shared.dataTask(with: baseURL) { data, _, error in
+        var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
+        let apiKeyQuery = URLQueryItem(name: kApiKey, value: valueKey)
+        let typeQuery = URLQueryItem(name: kType, value: typeValue)
+        let searchQuery = URLQueryItem(name: kSearchTerm, value: searchTerm)
+        let sortQuery = URLQueryItem(name: ksortBy, value: ratingValue)
+        urlComponents?.queryItems = [apiKeyQuery,typeQuery,searchQuery,sortQuery]
+        
+        guard let finalURL = urlComponents?.url else {return}
+        
+        URLSession.shared.dataTask(with: finalURL) { data, _, error in
             if let error = error {
-                print("There has been an error fetching the data. The url is \(baseURL)", error.localizedDescription)
-                completion(.failure(.badURL))
-            }
-            guard let data = data else {
-                completion(.failure(.couldNotUnwrap))
-                return
-            }
-            do {
-                let searchList = try JSONDecoder().decode(TopLevelDictionary.self, from: data)
-                completion(.success(searchList))
-            } catch {
-                print("Error", error.localizedDescription)
-                completion(.failure(.errorDecoding(error)))
-            }
-        }.resume()
-    }
-    static func fetchSearchItem(with urlString: String, completion: @escaping (Result<SearchResultDictionary, NetworkError>) -> Void) {
-        // comeback and see if i need to change the let to var
-        guard var searchURL = URL(string: baseURLString) else {
-            completion(.failure(.badURL))
-            return
-        }
-        searchURL.appendPathComponent(urlString)
-        URLSession.shared.dataTask(with: searchURL) { data, _, error in
-            if let error = error {
-                print("Error has happened", error.localizedDescription)
+                print("Could not unwrap this url, error.", error.localizedDescription)
                 completion(.failure(.couldNotUnwrap))
                 return
             }
@@ -51,10 +42,11 @@ class NetworkController {
                 return
             }
             do {
-                let searchedItem = try JSONDecoder().decode(SearchResultDictionary.self, from: searchData)
-                completion(.success(searchedItem))
+                let searchResults = try JSONDecoder().decode(TopLevelDictionary.self, from: searchData).searchResults
+
+                completion(.success(searchResults))
             } catch {
-                print("Error has happend.", error.localizedDescription)
+                print("There was an error decoding the data.", error.localizedDescription)
                 completion(.failure(.errorDecoding(error)))
             }
         }.resume()
@@ -67,7 +59,7 @@ class NetworkController {
         }
         URLSession.shared.dataTask(with: imageURL) { data, _, error in
             if let error = error {
-                print("Error has happened for image", error.localizedDescription)
+                print("Error has happened for fetching the  image", error.localizedDescription)
                 completion(.failure(.requestError(error)))
             }
             guard let data = data else {
