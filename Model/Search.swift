@@ -53,8 +53,7 @@ struct Product: Decodable {
     }
     let title: String?
     let brand: String?
-    //    let features: String?
     let rating: Double?
     let image: String?
-    //    let price: Double?
+    
 }

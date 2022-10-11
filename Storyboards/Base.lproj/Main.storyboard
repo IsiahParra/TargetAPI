@@ -97,7 +97,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="lgN-JH-REh">
-                                <rect key="frame" x="24" y="389" width="366" height="118.5"/>
+                                <rect key="frame" x="24" y="389" width="366" height="69.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Title)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5JD-bw-7wZ">
                                         <rect key="frame" x="160.5" y="0.0" width="45" height="20.5"/>
@@ -111,23 +111,10 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(price)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0w-ED-l8E">
-                                        <rect key="frame" x="158" y="49" width="50.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(rating)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1f-Fb-I6o">
-                                        <rect key="frame" x="155" y="73.5" width="56.5" height="20.5"/>
+                                        <rect key="frame" x="155" y="49" width="56.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(feature)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yuF-Qh-ATw">
-                                        <rect key="frame" x="150" y="98" width="66" height="20.5"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.67289960380000002" green="0.007054797374" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -150,10 +137,8 @@
                     <navigationItem key="navigationItem" id="Suo-Bx-bAS"/>
                     <connections>
                         <outlet property="brandNameOfItem" destination="edL-3T-NDc" id="UCe-5p-Ny8"/>
-                        <outlet property="featureOfItem" destination="yuF-Qh-ATw" id="ajs-He-tkb"/>
                         <outlet property="itemImage" destination="nJe-1A-LQv" id="Jtj-jk-jSJ"/>
                         <outlet property="positionLabel" destination="WG4-Oy-ZFZ" id="l4T-af-uu0"/>
-                        <outlet property="priceOfItem" destination="s0w-ED-l8E" id="6UZ-oh-MnG"/>
                         <outlet property="ratingOfItem" destination="H1f-Fb-I6o" id="tC2-nu-uf5"/>
                         <outlet property="titleOfItem" destination="5JD-bw-7wZ" id="tIb-j1-z35"/>
                     </connections>

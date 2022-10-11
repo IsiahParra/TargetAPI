@@ -9,13 +9,11 @@ import UIKit
 
 class SearchedItemViewController: UIViewController {
     
-    @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var titleOfItem: UILabel!
     @IBOutlet weak var brandNameOfItem: UILabel!
-    @IBOutlet weak var priceOfItem: UILabel!
     @IBOutlet weak var ratingOfItem: UILabel!
-    @IBOutlet weak var featureOfItem: UILabel!
+    
     
     
     var product: Product?
